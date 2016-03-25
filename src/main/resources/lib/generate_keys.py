@@ -5,7 +5,7 @@ if __name__ == "__main__":
 
     import random
 
-    f = open('../keys', 'w')
+    f = open('../keys.out', 'w')
 
     for it in range(10000):
         array = random.sample(range(0, 99), 50)
