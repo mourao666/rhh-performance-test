@@ -27,21 +27,25 @@ import br.ufu.pgcc.sc.cassandrasim.hash.RandomHyperplaneHash;
 
 public class EvaluateHash
 {
-    public void rhh(ByteBuffer[] keys, double[][] vectors)
+    public long rhh(ByteBuffer[] keys, double[][] vectors)
     {
+        long time = System.nanoTime();
         for (ByteBuffer key : keys)
         {
             BitSet gray = RandomHyperplaneHash.rhh(key, vectors.length, vectors);
             BitSet binary = BinaryReflectedGrayCodeUtil.grayToBinary(gray);
         }
+        return System.nanoTime() - time;
     }
 
-    public void murmur(ByteBuffer[] keys)
+    public long murmur(ByteBuffer[] keys)
     {
+        long time = System.nanoTime();
         for (ByteBuffer key : keys)
         {
             long[] hash = new long[2];
             MurmurHash.hash3_x64_128(key, key.position(), key.remaining(), 0, hash);
         }
+        return System.nanoTime() - time;
     }
 }
