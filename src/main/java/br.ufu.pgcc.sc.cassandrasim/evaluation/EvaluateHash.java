@@ -16,17 +16,32 @@
  * limitations under the License.
  */
 
-package br.ufu.pgcc.sc.cassandrasim;
+package br.ufu.pgcc.sc.cassandrasim.evaluation;
 
-import br.ufu.pgcc.sc.cassandrasim.data.Data;
-import br.ufu.pgcc.sc.cassandrasim.evaluation.EvaluateHash;
+import java.nio.ByteBuffer;
+import java.util.BitSet;
 
-public class Main
+import br.ufu.pgcc.sc.cassandrasim.gray.BinaryReflectedGrayCodeUtil;
+import br.ufu.pgcc.sc.cassandrasim.hash.MurmurHash;
+import br.ufu.pgcc.sc.cassandrasim.hash.RandomHyperplaneHash;
+
+public class EvaluateHash
 {
-    public static void main(String[] args)
+    public void rhh(ByteBuffer[] keys, double[][] vectors)
     {
-        EvaluateHash evaluateHash = new EvaluateHash();
-        evaluateHash.rhh(Data.KEYS, Data.VECTORS);
-        evaluateHash.murmur(Data.KEYS);
+        for (ByteBuffer key : keys)
+        {
+            BitSet gray = RandomHyperplaneHash.rhh(key, vectors.length, vectors);
+            BitSet binary = BinaryReflectedGrayCodeUtil.grayToBinary(gray);
+        }
+    }
+
+    public void murmur(ByteBuffer[] keys)
+    {
+        for (ByteBuffer key : keys)
+        {
+            long[] hash = new long[2];
+            MurmurHash.hash3_x64_128(key, key.position(), key.remaining(), 0, hash);
+        }
     }
 }

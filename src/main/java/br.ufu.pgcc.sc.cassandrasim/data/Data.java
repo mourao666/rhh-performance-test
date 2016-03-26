@@ -23,8 +23,8 @@ import java.nio.IntBuffer;
 
 public class Data
 {
-    private static final double[][] VECTORS = getVectors();
-    private static final ByteBuffer[] KEYS = getKeys();
+    public static final double[][] VECTORS = getVectors();
+    public static final ByteBuffer[] KEYS = getKeys();
 
     private static double[][] getVectors()
     {

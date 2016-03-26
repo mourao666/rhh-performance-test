@@ -22,7 +22,7 @@ import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.util.BitSet;
 
-public class RamdomHyperplaneHash
+public class RandomHyperplaneHash
 {
     public static BitSet rhh(ByteBuffer key, int bits, double[][] vectors)
     {
