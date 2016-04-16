@@ -29,10 +29,15 @@ public class EvaluateHash
 {
     public long rhh(ByteBuffer[] keys, double[][] vectors)
     {
-        long time = System.nanoTime();
-        for (ByteBuffer key : keys)
+        for (int i = 0; i < 5000; i++)
         {
-            BitSet gray = RandomHyperplaneHash.rhh(key, vectors.length, vectors);
+            BitSet gray = RandomHyperplaneHash.rhh(keys[i], vectors.length, vectors);
+            BitSet binary = BinaryReflectedGrayCodeUtil.grayToBinary(gray);
+        }
+        long time = System.nanoTime();
+        for (int i = 5000; i < 15000; i++)
+        {
+            BitSet gray = RandomHyperplaneHash.rhh(keys[i], vectors.length, vectors);
             BitSet binary = BinaryReflectedGrayCodeUtil.grayToBinary(gray);
         }
         return System.nanoTime() - time;
@@ -40,11 +45,16 @@ public class EvaluateHash
 
     public long murmur(ByteBuffer[] keys)
     {
-        long time = System.nanoTime();
-        for (ByteBuffer key : keys)
+        for (int i = 0; i < 5000; i++)
         {
             long[] hash = new long[2];
-            MurmurHash.hash3_x64_128(key, key.position(), key.remaining(), 0, hash);
+            MurmurHash.hash3_x64_128(keys[i], keys[i].position(), keys[i].remaining(), 0, hash);
+        }
+        long time = System.nanoTime();
+        for (int i = 5000; i < 15000; i++)
+        {
+            long[] hash = new long[2];
+            MurmurHash.hash3_x64_128(keys[i], keys[i].position(), keys[i].remaining(), 0, hash);
         }
         return System.nanoTime() - time;
     }

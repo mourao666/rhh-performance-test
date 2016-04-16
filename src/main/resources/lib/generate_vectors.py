@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     f = open('../vectors.out', 'w')
 
-    for it in range(16):
+    for it in range(128):
         array = np.random.uniform(low=0.0, high=1.0, size=(50,))
         f.write(' '.join(str(x) for x in array))
         f.write('\n')

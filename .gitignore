@@ -1,4 +1,5 @@
 src/main/resources/*.out
+results
 
 # IntelliJ
 .idea/

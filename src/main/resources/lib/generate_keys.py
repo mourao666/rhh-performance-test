@@ -7,6 +7,11 @@ if __name__ == "__main__":
 
     f = open('../keys.out', 'w')
 
+    for it in range(5000):
+        array = random.sample(range(0, 99), 50)
+        f.write(' '.join(str(x) for x in array))
+        f.write('\n')
+
     for it in range(10000):
         array = random.sample(range(0, 99), 50)
         f.write(' '.join(str(x) for x in array))

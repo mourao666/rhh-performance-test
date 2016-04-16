@@ -28,10 +28,11 @@ public class Main
     public static void main(String[] args)
     {
         EvaluateHash evaluateHash = new EvaluateHash();
-        long rhhTime = evaluateHash.rhh(Data.KEYS, Data.VECTORS);
-        long murmurTime = evaluateHash.murmur(Data.KEYS);
 
+        long rhhTime = evaluateHash.rhh(Data.KEYS, Data.VECTORS);
         System.out.println(String.format("RHH time: %d milliseconds", TimeUnit.NANOSECONDS.toMillis(rhhTime)));
-        System.out.println(String.format("Murmur time: %d milliseconds", TimeUnit.NANOSECONDS.toMillis(murmurTime)));
+
+//        long murmurTime = evaluateHash.murmur(Data.KEYS);
+//        System.out.println(String.format("Murmur time: %d milliseconds", TimeUnit.NANOSECONDS.toMillis(murmurTime)));
     }
 }
